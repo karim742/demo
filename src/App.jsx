@@ -1,23 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [todos, setTodos] = useState([]);
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_BASEURL}/todos`)
-      .then((response) => response.json())
-      .then((data) => setTodos(data));
-  }, []);
+
   return (
     <>
-      <ul>
-        {todos?.slice(1, 20)?.map((todo) => (
-          <li key={todo.id}>{todo.title}</li>
-        ))}
-      </ul>
       <div>
         <a
           href='https://vitejs.dev'
@@ -45,6 +36,7 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <Link to={'/todos'}>Todos</Link>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
